@@ -27,7 +27,7 @@
 
 ```bash
 nnUNetv2_train DATASET_ID 3d_fullres FOLD -tr nnUNetTrainer -p nnUNetResEncUNetXLPlans
-
+```
 ## 4. 推論與集成 (Inference & Ensemble)
 我們使用 5-Fold Cross Validation 的模型進行集成推論。
 
