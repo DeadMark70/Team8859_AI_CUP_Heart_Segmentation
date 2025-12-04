@@ -27,3 +27,17 @@
 
 ```bash
 nnUNetv2_train DATASET_ID 3d_fullres FOLD -tr nnUNetTrainer -p nnUNetResEncUNetXLPlans
+
+## 4. 推論與集成 (Inference & Ensemble)
+我們使用 5-Fold Cross Validation 的模型進行集成推論。
+
+1.  確保 `nnUNet_results` 資料夾中已有訓練好的 5 個 Fold 的模型 (Fold 0, 1, 2, 3, 4)。
+2.  使用本儲存庫提供的平行化推論腳本 `batch_ensemble_parallel.py` 進行預測與集成。
+    * 該腳本會自動對測試集執行推論，並融合 5 個模型的預測結果。
+    * 執行指令：
+    ```bash
+    python batch_ensemble_parallel.py -p 0 -n 4 &
+    python batch_ensemble_parallel.py -p 1 -n 4 &
+    python batch_ensemble_parallel.py -p 2 -n 4 &
+    python batch_ensemble_parallel.py -p 3 -n 4 &
+    ```
